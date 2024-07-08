@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:elevation="4dp"
+        app:title="@string/title_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_10"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vertical_90"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_05"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_30"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/loginImage"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
+        android:layout_marginTop="@dimen/_30dp"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:layout_marginStart="@dimen/_30dp"
+        android:layout_marginEnd="@dimen/_30dp"
+        android:src="@drawable/img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontal_30" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/emailView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/text_email"
+        app:layout_constraintStart_toEndOf="@+id/vertical_10"
+        app:layout_constraintTop_toBottomOf="@+id/loginImage" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/emailTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_05dp"
+        android:background="@drawable/textviewbackground"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_90"
+        app:layout_constraintStart_toEndOf="@+id/vertical_10"
+        app:layout_constraintTop_toBottomOf="@+id/emailView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/passView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/text_password"
+        app:layout_constraintStart_toEndOf="@+id/vertical_10"
+        app:layout_constraintTop_toBottomOf="@+id/emailTxt" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/passTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_05dp"
+        android:background="@drawable/textviewbackground"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_90"
+        app:layout_constraintStart_toEndOf="@+id/vertical_10"
+        app:layout_constraintTop_toBottomOf="@+id/passView" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/forgotTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/text_forgot_password"
+        app:layout_constraintStart_toEndOf="@+id/vertical_10"
+        app:layout_constraintTop_toBottomOf="@+id/passTxt" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:text="@string/text_login"
+        android:textColor="@color/black"
+        android:backgroundTint="#4581B1"
+        android:background="@drawable/btnviewbackground"
+        app:layout_constraintBottom_toTopOf="@+id/register"
+        app:layout_constraintStart_toEndOf="@+id/vertical_10"
+        app:layout_constraintTop_toBottomOf="@+id/forgotTxt"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_90" />
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/text_register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnlogin"
+        app:layout_constraintStart_toEndOf="@+id/vertical_10"
+        app:layout_constraintEnd_toStartOf="@+id/vertical_90" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

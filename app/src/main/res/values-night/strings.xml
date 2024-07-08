@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_new_address">Add New Address</string>
+    <string name="address_title">Address Title</string>
+    <string name="address">Address</string>
+</resources>

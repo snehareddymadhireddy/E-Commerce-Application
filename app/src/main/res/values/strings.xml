@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">FinalProject1</string>
+    <string name="add_new_address">Add New Address</string>
+    <string name="address_title">Address Title</string>
+    <string name="address">Address</string>
+    <string name="cancel">Cancel\n</string>
+    <string name="save">SAVE\n</string>
+    <string name="text_cash_on_delivery">Cash On Delivery</string>
+    <string name="text_internet_banking">Internet Banking</string>
+    <string name="text_debit_credit_card">Debit Card / Credit Card</string>
+    <string name="text_paypal">PayPal</string>
+    <string name="text_next">Next</string>
+    <string name="add_address">ADD ADDRESS</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_description">Product Description</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="quantity">Quantity</string>
+    <string name="amount">Amount</string>
+    <string name="title_supercart">SuperCart</string>
+    <string name="product_name_hint">Product Name</string>
+    <string name="product_description_hint">Product description</string>
+    <string name="product_price_hint">$99.99</string>
+    <string name="next">NEXT</string>
+    <string name="select_delivery_address">Select Delivery Address</string>
+    <string name="checkout">Checkout</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="total_bill_amount">Total Bill Amount</string>
+    <string name="product_image">Product Image</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_description">Item Description</string>
+    <string name="item_price">Item Price</string>
+    <string name="title_toolbar">"E-COMMERCE "</string>
+    <string name="text_email">Email</string>
+    <string name="text_password">Text Password</string>
+    <string name="text_forgot_password">Forget Password</string>
+    <string name="text_login">Login</string>
+    <string name="text_register">Register</string>
+    <string name="title_select_payment_method">Select Payment Method</string>
+    <string name="title_register">REGISTER</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="hint_mobile_no">Mobile No.</string>
+    <string name="hint_email_id">Email Id</string>
+    <string name="hint_password">Password</string>
+
+    <string name="text_have_account">I HAVE AN ACCOUNT</string>
+</resources>
