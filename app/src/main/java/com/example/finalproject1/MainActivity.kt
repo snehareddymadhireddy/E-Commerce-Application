@@ -5,51 +5,80 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalproject1.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    val apiService:APIService=APIClient.retrofit.create(APIService::class.java)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initViews()
-        newRegistration()
-    }
-
-    private fun newRegistration() {
-        with(binding)
-        {
-            register.setOnClickListener {
-                val intent=Intent(this@MainActivity,RegisterUser::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
     }
 
     private fun initViews() {
         checkIsUserAlreadyLoggedIn()
+
         with(binding) {
+            register.setOnClickListener {
+                // Intent to open RegisterUser activity
+                val intent = Intent(this@MainActivity, RegisterUser::class.java)
+                startActivity(intent)
+                finish()
+            }
+
             btnlogin.setOnClickListener {
                 val email = emailTxt.text.toString()
                 val password = passTxt.text.toString()
 
                 if (validateInputs(email, password)) {
-                    saveTheUserInfo(email, password)
-                    val intent2 = Intent(this@MainActivity, SuperCartActivity::class.java)
-                    startActivity(intent2)
-                    finish()
+                    addUserLogin(email,password)
+
                 }
             }
         }
     }
 
+    private fun addUserLogin(email: String, password: String) {
+        val request=AddUserLoginRequest(email_id = email, password = password)
+        val call: Call<AddUserLoginResponse> = apiService.addUserLogin(request)
+        call.enqueue(object: Callback<AddUserLoginResponse>
+        {
+            override fun onResponse(
+                call: Call<AddUserLoginResponse>,
+                response: Response<AddUserLoginResponse>
+            ) {
+                val serverResponse: AddUserLoginResponse? = response.body()
+                if (serverResponse != null) {
+                    if (response.isSuccessful && serverResponse.status == 0) {
+                        Toast.makeText(this@MainActivity, serverResponse.message ?: "Success", Toast.LENGTH_LONG).show()
+                        saveTheUserInfo(email, password)
+                        val intent2 = Intent(this@MainActivity, SuperCartActivity::class.java)
+                        startActivity(intent2)
+                        finish()
+
+                    } else {
+                        Toast.makeText(this@MainActivity, "Incorrect password, please register . Error code: ${response.code()}", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+
+            override fun onFailure(p0: Call<AddUserLoginResponse>, p1: Throwable) {
+                Toast.makeText(this@MainActivity,"User email not found",Toast.LENGTH_LONG).show()
+            }
+
+        })
+    }
+
     private fun validateInputs(emailTxt: String, passTxt: String): Boolean {
         if (emailTxt.isEmpty() || passTxt.isEmpty()) {
-            Toast.makeText(this@MainActivity, "Email or password can't be empty", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Email or password can't be empty", Snackbar.LENGTH_SHORT).show()
             return false
         }
 
@@ -58,12 +87,16 @@ class MainActivity : AppCompatActivity() {
         val matcher = pattern.matcher(emailTxt)
 
         if (!matcher.matches()) {
-            Toast.makeText(this@MainActivity, "Email is not valid", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Email is not valid", Snackbar.LENGTH_LONG)
+                .setAction("Retry") {
+                    binding.emailTxt.text?.clear()
+                }
+                .show()
             return false
         }
 
         if (passTxt.length < 6) {
-            Toast.makeText(this@MainActivity, "Password should be greater than 6 characters", Toast.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Password should be greater than 6 characters", Snackbar.LENGTH_SHORT).show()
             return false
         }
 

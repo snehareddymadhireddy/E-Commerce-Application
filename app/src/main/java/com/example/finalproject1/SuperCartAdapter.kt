@@ -5,16 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.finalproject1.databinding.CartListBinding
 import com.example.finalproject1.databinding.SuperCartListBinding
+import com.squareup.picasso.Picasso
 
-class SuperCartAdapter(private val cartItems: List<CartData>,private val onItemClicked: () -> Unit) : RecyclerView.Adapter<SuperCartAdapter.CartViewHolder>() {
+class SuperCartAdapter(private val cartItems: List<CategoryData>,private val onItemClicked: (CategoryData) -> Unit) : RecyclerView.Adapter<SuperCartAdapter.CartViewHolder>() {
     private lateinit var binding:SuperCartListBinding
 
     inner class CartViewHolder(private var binding: SuperCartListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(cartItem: CartData) {
+        fun bind(cartItem: CategoryData) {
             with(binding) {
-                imageView.setImageResource(cartItem.img)
-                textView.text = cartItem.item
-                root.setOnClickListener { onItemClicked() }
+                println("Loading image URL: ${cartItem.category_image_url}")
+                Picasso.get().load(cartItem.category_image_url).into(imageView);
+//                imageView.setImageResource("https://apolisrises.co.in/myshop/images/${cartItem.category_image_url}")
+                textView.text=cartItem.category_name
+
+                root.setOnClickListener { onItemClicked(cartItem) }
             }
         }
     }
