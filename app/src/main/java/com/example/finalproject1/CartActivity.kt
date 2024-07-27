@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.finalproject1.data.Cart
+import com.example.finalproject1.data.ProductData
 import com.example.finalproject1.databinding.ActivityCartBinding
 
 class CartActivity : AppCompatActivity() {
@@ -19,11 +21,11 @@ class CartActivity : AppCompatActivity() {
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        productDataList = mutableListOf(
-            ProductData(1, "FOSSIL", "Fossil Men's Grant Quartz Stainless Steel and Leather", 50.0, R.drawable.img_1),
-            ProductData(2, "FIZILI", "Mens Watches Ultra-Thin Minimalist Waterproof ", 150.0, R.drawable.img_2),
-            ProductData(3, "OLEVS", "Bring the party anywhere with this compact yet powerful Bluetooth speaker. Enjoy deep bass and clear highs for an immersive audio experience.", 30.0, R.drawable.img_3)
-        )
+//        productDataList = mutableListOf(
+//            ProductData(1, "FOSSIL", "Fossil Men's Grant Quartz Stainless Steel and Leather", 50.0, R.drawable.img_1),
+//            ProductData(2, "FIZILI", "Mens Watches Ultra-Thin Minimalist Waterproof ", 150.0, R.drawable.img_2),
+//            ProductData(3, "OLEVS", "Bring the party anywhere with this compact yet powerful Bluetooth speaker. Enjoy deep bass and clear highs for an immersive audio experience.", 30.0, R.drawable.img_3)
+//        )
 
 
 

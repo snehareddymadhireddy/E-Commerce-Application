@@ -1,4 +1,4 @@
-package com.example.finalproject1
+package com.example.finalproject1.data
 
 data class User(
     val email_id: String,

@@ -1,10 +1,8 @@
 package com.example.finalproject1
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.finalproject1.data.Item
 import com.example.finalproject1.databinding.ActivityItemDescriptionBinding
 
 class ItemDescriptionActivity : AppCompatActivity() {

@@ -1,10 +1,9 @@
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.finalproject1.Cart
-import com.example.finalproject1.ProductData
+import com.example.finalproject1.data.Cart
+import com.example.finalproject1.data.ProductData
 import com.example.finalproject1.databinding.CartListBinding
-import com.example.finalproject1.databinding.SuperCartListBinding
 
 class CartAdapter(
     private val cartItems: List<Cart>,

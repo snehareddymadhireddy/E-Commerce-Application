@@ -35,6 +35,10 @@ class SubCategoryActivity : AppCompatActivity() {
         }
 
         setupRecyclerView()
+        binding.btnMovetoCart.setOnClickListener {
+            val intent= Intent(this,CartActivity::class.java)
+            startActivity(intent) }
+
     }
 
     private fun setupRecyclerView() {

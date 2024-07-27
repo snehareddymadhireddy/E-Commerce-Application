@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.finalproject1.data.Item
 import com.example.finalproject1.databinding.CategoryItemListBinding
 
 class CategoryAdapter(private val items: List<Item>, private val onClick: (Item) -> Unit) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
@@ -14,7 +15,7 @@ class CategoryAdapter(private val items: List<Item>, private val onClick: (Item)
             itemView.setOnClickListener {
                 onClick(items[adapterPosition])
             }
-            // Initialize button click listeners
+
             binding.btnAddToCart.setOnClickListener {
                 binding.btnAddToCart.visibility = View.GONE
                 binding.quantityLayout.visibility = View.VISIBLE

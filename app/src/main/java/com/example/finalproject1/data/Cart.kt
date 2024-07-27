@@ -1,4 +1,4 @@
-package com.example.finalproject1
+package com.example.finalproject1.data
 
 data class Cart(val productId: Long,
                 val quantity: Int,
