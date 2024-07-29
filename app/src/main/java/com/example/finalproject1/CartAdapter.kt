@@ -1,40 +1,52 @@
+// CartAdapter.kt
+package com.example.finalproject1
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.finalproject1.data.Cart
-import com.example.finalproject1.data.ProductData
+import com.example.finalproject1.data.Product
 import com.example.finalproject1.databinding.CartListBinding
+import com.example.finalproject1.local.AppDatabase
+import com.squareup.picasso.Picasso
 
 class CartAdapter(
-    private val cartItems: List<Cart>,
-    private val productDataList: List<ProductData>,
-    private val onQuantityChanged: (Cart) -> Unit
+    private val products: MutableList<Product>,
+    private val cartDatabase: AppDatabase,
+    private val onQuantityChanged: (Product) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
-private lateinit var binding: CartListBinding
     inner class ViewHolder(private val binding: CartListBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
-        fun bind(cartItem: Cart, productData: ProductData) {
+        fun bind(product: Product) {
             with(binding) {
-                imgProduct.setImageResource(productData.image)
-                txtProductName.text = productData.name
-                txtProductDescription.text = productData.description
-                txtProductPrice.text = "$${productData.price}"
-                etQuantity.setText(cartItem.quantity.toString())
-                txtTotalPrice.text = "$${cartItem.totalPrice}"
+                Picasso.get().load("https://apolisrises.co.in/myshop/images/${product.product_image_url}")
+                    .placeholder(R.drawable.baseline_downloading_24)
+                    .error(R.drawable.baseline_downloading_24)
+                    .into(imgProduct)
+                txtProductName.text = product.product_name
+                txtProductDescription.text = product.description
+                txtProductPrice.text = "$${product.price}"
+                etQuantity.setText(product.quantity.toString())
+                txtTotalPrice.text = "$${product.quantity * product.price.toDouble()}"
 
                 btnMinus.setOnClickListener {
-                    val quantity = cartItem.quantity - 1
-                    if (quantity > 0) {
-                        val updatedItem = cartItem.copy(quantity = quantity, totalPrice = quantity * cartItem.price)
-                        onQuantityChanged(updatedItem)
+                    val newQuantity = product.quantity - 1
+                    if (newQuantity > 0) {
+                        val updatedProduct = product.copy(quantity = newQuantity)
+                        onQuantityChanged(updatedProduct)
+                    }
+                    else if(newQuantity==0){
+//                        txtTotalPrice.text= (txtTotalPrice.text.toString().toDouble()-product.price.toDouble()).toString()
+                        cartDatabase.productDao().deleteCartItem(product)
+
+                        products.removeAt(adapterPosition)
+                        notifyItemRemoved(adapterPosition)
+
                     }
                 }
 
                 btnPlus.setOnClickListener {
-                    val quantity = cartItem.quantity + 1
-                    val updatedItem = cartItem.copy(quantity = quantity, totalPrice = quantity * cartItem.price)
-                    onQuantityChanged(updatedItem)
+                    val newQuantity = product.quantity + 1
+                    val updatedProduct = product.copy(quantity = newQuantity)
+                    onQuantityChanged(updatedProduct)
                 }
             }
         }
@@ -46,10 +58,8 @@ private lateinit var binding: CartListBinding
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val cartItem = cartItems[position]
-        val productData = productDataList.find { it.id == cartItem.productId }
-        productData?.let { holder.bind(cartItem, it) }
+        holder.bind(products[position])
     }
 
-    override fun getItemCount() = cartItems.size
+    override fun getItemCount() = products.size
 }
