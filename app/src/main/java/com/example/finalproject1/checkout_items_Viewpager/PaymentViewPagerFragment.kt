@@ -36,7 +36,6 @@ class PaymentViewPagerFragment : Fragment() {
 
         binding.btnNext.setOnClickListener {
 
-//             findNavController().navigate(R.id.action_paymentViewPagerFragment_to_nextFragment)
         }
     }
 }
